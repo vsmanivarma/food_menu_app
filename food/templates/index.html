@@ -1,0 +1,32 @@
+{% extends 'base.html'%}
+{% block body %}
+    {% for item in item_list %}
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-3 mb-4">
+                    <img class="card" style="height: 150px; width: 250px; margin-bottom: 10px;" src="{{ item.item_image }}">
+                </div>
+                <div class="col-md-9">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2>{{ item.item_name }}</h2>
+                        </div>
+                        <div class="col-md-12">
+                            <h5>Description: {{ item.item_desc }}</h5>
+                        </div>
+                        <div class="col-md-12">
+                            <h6>Price: ₹ {{ item.item_price }}</h6>
+                        </div>
+                        <div class="col-md-12">
+                            <h6>Rating: {{ item.item_rating}}/10</h6>
+                        </div>
+                        <div class="col-md-12">
+                            <a href="{% url 'view_item' item.id %}">View Details</a>
+                            <a href="{% url 'update_item' item.id %}">Update Item</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
