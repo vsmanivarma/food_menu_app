@@ -14,7 +14,7 @@
             min-height: 100%;
         }
         body {
-            margin-bottom: 100px; /* Height of the footer */
+            margin-bottom: 150px; /* Height of the footer */
             overflow-x: hidden; /* Hide horizontal scrollbar */
         }
         footer {
@@ -30,28 +30,41 @@
             width: 24px;
             height: 24px;
         }
+        .pagination {
+            display: flex;
+            justify-content: center;
+        }
     </style>
 </head>
-<body class="d-flex flex-column min-vh-100"> <!-- Add class for flex column and minimum height -->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid bg-light">
-            <img src="https://thumbs.dreamstime.com/b/heart-shape-various-vegetables-fruits-healthy-food-concept-isolated-white-background-140287808.jpg" alt="" height="50">
-            <a class="navbar-brand" href="{% url 'show_item' %}">FoodMenu</a>
+<body class="d-flex flex-column min-vh-100">
+    <!-- Add class for flex column and minimum height -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light w-150">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'show_item' %}">
+                <img src="https://thumbs.dreamstime.com/b/heart-shape-various-vegetables-fruits-healthy-food-concept-isolated-white-background-140287808.jpg" alt="" height="50">
+                FoodMenu
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <a class="nav-link" href="{% url 'add_item' %}">Add Item</a>
-<!--                    <a class="nav-link" href="#">Update Item</a>-->
+                    <!-- <a class="nav-link" href="#">Update Item</a> -->
                 </div>
             </div>
+            <form class="d-flex" action="" method="GET">
+                <input class="form-control me-2" type="search" name="item_name" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
         </div>
     </nav>
+
 {% block body %}
 {% endblock %}
 
     <!-- Main content -->
+
 
     <footer class="d-flex justify-content-between align-items-center py-3">
         <div class="container">

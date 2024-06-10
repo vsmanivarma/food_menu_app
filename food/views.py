@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from .models import Item
 from django import forms
+from django.core.paginator import Paginator
 # Create your views here.
 
 # def home(request):
@@ -10,9 +11,25 @@ from django import forms
 # 	return render(request,'base.html', context)
 
 def show_item(request):
+	message = ''
 	item_list = Item.objects.all()
+	item_name = request.GET.get('item_name')
+	# if item_name != '' and item_name is not None:
+	# 	item_list = item_list.filter(item_name__icontains=item_name)
+	# else:
+	# 	message = 'Item Not Found'
+	if item_name:
+		item_list = Item.objects.filter(item_name__icontains=item_name)
+		if not item_list:
+			message = 'Item Not Found'
+	else:
+		item_list = Item.objects.all()
+	paginator = Paginator(item_list,5)
+	page = request.GET.get('page')
+	item_list = paginator.get_page(page)
 	context ={
 		'item_list':item_list,
+		'message':message,
 	}
 	return render(request,'index.html',context)
 
